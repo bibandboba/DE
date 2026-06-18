@@ -1,0 +1,4 @@
+.DS_Store
+*.bak
+*.executed.ipynb
+data/disco.db

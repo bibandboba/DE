@@ -1,0 +1,170 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 600px;
+                 background-color: #0f0f23;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Alice", "label": "Alice", "shape": "dot", "size": 41, "title": "Alice\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Chester McLaine", "label": "Chester McLaine", "shape": "dot", "size": 31, "title": "Chester McLaine\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Coupris Kineema", "label": "Coupris Kineema", "shape": "dot", "size": 39, "title": "Coupris Kineema\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "DJ Flacio", "label": "DJ Flacio", "shape": "dot", "size": 28, "title": "DJ Flacio\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "DJ Mesh", "label": "DJ Mesh", "shape": "dot", "size": 28, "title": "DJ Mesh\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Horrific Necktie", "label": "Horrific Necktie", "shape": "dot", "size": 60, "title": "Horrific Necktie\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Jamrock Public Library", "label": "Jamrock Public Library", "shape": "dot", "size": 28, "title": "Jamrock Public Library\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Jean Vicquemare", "label": "Jean Vicquemare", "shape": "dot", "size": 31, "title": "Jean Vicquemare\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Judit Minot", "label": "Judit Minot", "shape": "dot", "size": 31, "title": "Judit Minot\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Jules Pidieu", "label": "Jules Pidieu", "shape": "dot", "size": 28, "title": "Jules Pidieu\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Kim Kitsuragi", "label": "Kim Kitsuragi", "shape": "dot", "size": 85, "title": "Kim Kitsuragi\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Mack Torson", "label": "Mack Torson", "shape": "dot", "size": 31, "title": "Mack Torson\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Nix Gottlieb", "label": "Nix Gottlieb", "shape": "dot", "size": 24, "title": "Nix Gottlieb\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Sylvie", "label": "Sylvie", "shape": "dot", "size": 28, "title": "Sylvie\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Tutorial Agent", "label": "Tutorial Agent", "shape": "dot", "size": 43, "title": "Tutorial Agent\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "You", "label": "You", "shape": "dot", "size": 90, "title": "You\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Ancient Reptilian Brain", "label": "Ancient Reptilian Brain", "shape": "dot", "size": 22, "title": "Ancient Reptilian Brain\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Cindy the SKULL", "label": "Cindy the SKULL", "shape": "dot", "size": 20, "title": "Cindy the SKULL\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Cuno", "label": "Cuno", "shape": "dot", "size": 31, "title": "Cuno\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Cunoesse", "label": "Cunoesse", "shape": "dot", "size": 26, "title": "Cunoesse\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Garte, the Cafeteria Manager", "label": "Garte, the Cafeteria Manager", "shape": "dot", "size": 28, "title": "Garte, the Cafeteria Manager\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Joyce Messier", "label": "Joyce Messier", "shape": "dot", "size": 20, "title": "Joyce Messier\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Lena, the Cryptozoologist\u0027s wife", "label": "Lena, the Cryptozoologist\u0027s wife", "shape": "dot", "size": 28, "title": "Lena, the Cryptozoologist\u0027s wife\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Lilienne, the Net Picker", "label": "Lilienne, the Net Picker", "shape": "dot", "size": 20, "title": "Lilienne, the Net Picker\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Limbic System", "label": "Limbic System", "shape": "dot", "size": 22, "title": "Limbic System\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "The Hanged Man", "label": "The Hanged Man", "shape": "dot", "size": 24, "title": "The Hanged Man\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Annette", "label": "Annette", "shape": "dot", "size": 14, "title": "Annette\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Gaston Martin", "label": "Gaston Martin", "shape": "dot", "size": 16, "title": "Gaston Martin\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Ice Bear Fridge", "label": "Ice Bear Fridge", "shape": "dot", "size": 20, "title": "Ice Bear Fridge\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#1D9E75", "font": {"color": "#eeeeee"}, "id": "Man on water lock", "label": "Man on water lock", "shape": "dot", "size": 16, "title": "Man on water lock\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 3"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Morell, the Cryptozoologist", "label": "Morell, the Cryptozoologist", "shape": "dot", "size": 18, "title": "Morell, the Cryptozoologist\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#D85A30", "font": {"color": "#eeeeee"}, "id": "Nightwatchman\u0027s Booth", "label": "Nightwatchman\u0027s Booth", "shape": "dot", "size": 14, "title": "Nightwatchman\u0027s Booth\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 5"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Ren\u00e9 Arnoux", "label": "Ren\u00e9 Arnoux", "shape": "dot", "size": 16, "title": "Ren\u00e9 Arnoux\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Set of Tracks", "label": "Set of Tracks", "shape": "dot", "size": 14, "title": "Set of Tracks\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Suzerainty: The Board Game", "label": "Suzerainty: The Board Game", "shape": "dot", "size": 14, "title": "Suzerainty: The Board Game\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#378ADD", "font": {"color": "#eeeeee"}, "id": "Trash Container", "label": "Trash Container", "shape": "dot", "size": 20, "title": "Trash Container\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 2"}, {"color": "#1D9E75", "font": {"color": "#eeeeee"}, "id": "Water Lock Control Panel", "label": "Water Lock Control Panel", "shape": "dot", "size": 16, "title": "Water Lock Control Panel\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 3"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Bed", "label": "Bed", "shape": "dot", "size": 14, "title": "Bed\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}, {"color": "#7F77DD", "font": {"color": "#eeeeee"}, "id": "Ceiling Fan", "label": "Ceiling Fan", "shape": "dot", "size": 12, "title": "Ceiling Fan\n\u0414\u0435\u043d\u044c \u043f\u0435\u0440\u0432\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u0435\u043d\u0438\u044f: 1"}]);
+                  edges = new vis.DataSet([{"from": "Alice", "to": "Chester McLaine", "width": 2}, {"from": "Alice", "to": "Coupris Kineema", "width": 2}, {"from": "Alice", "to": "DJ Flacio", "width": 1}, {"from": "Alice", "to": "DJ Mesh", "width": 1}, {"from": "Alice", "to": "Horrific Necktie", "width": 2}, {"from": "Alice", "to": "Jamrock Public Library", "width": 2}, {"from": "Alice", "to": "Jean Vicquemare", "width": 1}, {"from": "Alice", "to": "Judit Minot", "width": 1}, {"from": "Alice", "to": "Jules Pidieu", "width": 1}, {"from": "Alice", "to": "Kim Kitsuragi", "width": 5}, {"from": "Alice", "to": "Mack Torson", "width": 2}, {"from": "Alice", "to": "Nix Gottlieb", "width": 1}, {"from": "Alice", "to": "Sylvie", "width": 2}, {"from": "Alice", "to": "Tutorial Agent", "width": 1}, {"from": "Alice", "to": "You", "width": 7}, {"from": "Chester McLaine", "to": "Coupris Kineema", "width": 1}, {"from": "Chester McLaine", "to": "Horrific Necktie", "width": 1}, {"from": "Chester McLaine", "to": "Jean Vicquemare", "width": 2}, {"from": "Chester McLaine", "to": "Judit Minot", "width": 2}, {"from": "Chester McLaine", "to": "Jules Pidieu", "width": 1}, {"from": "Chester McLaine", "to": "Kim Kitsuragi", "width": 2}, {"from": "Chester McLaine", "to": "Mack Torson", "width": 3}, {"from": "Chester McLaine", "to": "Nix Gottlieb", "width": 2}, {"from": "Chester McLaine", "to": "You", "width": 3}, {"from": "Coupris Kineema", "to": "DJ Flacio", "width": 1}, {"from": "Coupris Kineema", "to": "DJ Mesh", "width": 1}, {"from": "Coupris Kineema", "to": "Horrific Necktie", "width": 2}, {"from": "Coupris Kineema", "to": "Jamrock Public Library", "width": 1}, {"from": "Coupris Kineema", "to": "Jean Vicquemare", "width": 1}, {"from": "Coupris Kineema", "to": "Judit Minot", "width": 1}, {"from": "Coupris Kineema", "to": "Jules Pidieu", "width": 1}, {"from": "Coupris Kineema", "to": "Kim Kitsuragi", "width": 2}, {"from": "Coupris Kineema", "to": "Mack Torson", "width": 1}, {"from": "Coupris Kineema", "to": "Sylvie", "width": 1}, {"from": "Coupris Kineema", "to": "Tutorial Agent", "width": 1}, {"from": "Coupris Kineema", "to": "You", "width": 2}, {"from": "DJ Flacio", "to": "DJ Mesh", "width": 1}, {"from": "DJ Flacio", "to": "Horrific Necktie", "width": 1}, {"from": "DJ Flacio", "to": "Jamrock Public Library", "width": 1}, {"from": "DJ Flacio", "to": "Kim Kitsuragi", "width": 1}, {"from": "DJ Flacio", "to": "Sylvie", "width": 1}, {"from": "DJ Flacio", "to": "Tutorial Agent", "width": 1}, {"from": "DJ Flacio", "to": "You", "width": 1}, {"from": "DJ Mesh", "to": "Horrific Necktie", "width": 1}, {"from": "DJ Mesh", "to": "Jamrock Public Library", "width": 1}, {"from": "DJ Mesh", "to": "Kim Kitsuragi", "width": 1}, {"from": "DJ Mesh", "to": "Sylvie", "width": 1}, {"from": "DJ Mesh", "to": "Tutorial Agent", "width": 1}, {"from": "DJ Mesh", "to": "You", "width": 1}, {"from": "Horrific Necktie", "to": "Ancient Reptilian Brain", "width": 1}, {"from": "Horrific Necktie", "to": "Cindy the SKULL", "width": 1}, {"from": "Horrific Necktie", "to": "Cuno", "width": 3}, {"from": "Horrific Necktie", "to": "Cunoesse", "width": 3}, {"from": "Horrific Necktie", "to": "Garte, the Cafeteria Manager", "width": 1}, {"from": "Horrific Necktie", "to": "Jamrock Public Library", "width": 1}, {"from": "Horrific Necktie", "to": "Jean Vicquemare", "width": 1}, {"from": "Horrific Necktie", "to": "Joyce Messier", "width": 2}, {"from": "Horrific Necktie", "to": "Judit Minot", "width": 1}, {"from": "Horrific Necktie", "to": "Jules Pidieu", "width": 1}, {"from": "Horrific Necktie", "to": "Kim Kitsuragi", "width": 9}, {"from": "Horrific Necktie", "to": "Lena, the Cryptozoologist\u0027s wife", "width": 1}, {"from": "Horrific Necktie", "to": "Lilienne, the Net Picker", "width": 2}, {"from": "Horrific Necktie", "to": "Limbic System", "width": 1}, {"from": "Horrific Necktie", "to": "Mack Torson", "width": 1}, {"from": "Horrific Necktie", "to": "Sylvie", "width": 1}, {"from": "Horrific Necktie", "to": "The Hanged Man", "width": 2}, {"from": "Horrific Necktie", "to": "Tutorial Agent", "width": 2}, {"from": "Horrific Necktie", "to": "You", "width": 9}, {"from": "Jamrock Public Library", "to": "Kim Kitsuragi", "width": 1}, {"from": "Jamrock Public Library", "to": "Sylvie", "width": 1}, {"from": "Jamrock Public Library", "to": "Tutorial Agent", "width": 1}, {"from": "Jamrock Public Library", "to": "You", "width": 2}, {"from": "Jean Vicquemare", "to": "Judit Minot", "width": 2}, {"from": "Jean Vicquemare", "to": "Jules Pidieu", "width": 1}, {"from": "Jean Vicquemare", "to": "Kim Kitsuragi", "width": 2}, {"from": "Jean Vicquemare", "to": "Mack Torson", "width": 2}, {"from": "Jean Vicquemare", "to": "Nix Gottlieb", "width": 1}, {"from": "Jean Vicquemare", "to": "You", "width": 2}, {"from": "Judit Minot", "to": "Jules Pidieu", "width": 1}, {"from": "Judit Minot", "to": "Kim Kitsuragi", "width": 2}, {"from": "Judit Minot", "to": "Mack Torson", "width": 2}, {"from": "Judit Minot", "to": "Nix Gottlieb", "width": 1}, {"from": "Judit Minot", "to": "You", "width": 2}, {"from": "Jules Pidieu", "to": "Kim Kitsuragi", "width": 1}, {"from": "Jules Pidieu", "to": "Mack Torson", "width": 1}, {"from": "Jules Pidieu", "to": "You", "width": 1}, {"from": "Kim Kitsuragi", "to": "Ancient Reptilian Brain", "width": 1}, {"from": "Kim Kitsuragi", "to": "Annette", "width": 1}, {"from": "Kim Kitsuragi", "to": "Cindy the SKULL", "width": 1}, {"from": "Kim Kitsuragi", "to": "Cuno", "width": 14}, {"from": "Kim Kitsuragi", "to": "Cunoesse", "width": 13}, {"from": "Kim Kitsuragi", "to": "Garte, the Cafeteria Manager", "width": 3}, {"from": "Kim Kitsuragi", "to": "Gaston Martin", "width": 8}, {"from": "Kim Kitsuragi", "to": "Ice Bear Fridge", "width": 2}, {"from": "Kim Kitsuragi", "to": "Joyce Messier", "width": 6}, {"from": "Kim Kitsuragi", "to": "Lena, the Cryptozoologist\u0027s wife", "width": 5}, {"from": "Kim Kitsuragi", "to": "Lilienne, the Net Picker", "width": 3}, {"from": "Kim Kitsuragi", "to": "Limbic System", "width": 1}, {"from": "Kim Kitsuragi", "to": "Mack Torson", "width": 2}, {"from": "Kim Kitsuragi", "to": "Man on water lock", "width": 1}, {"from": "Kim Kitsuragi", "to": "Morell, the Cryptozoologist", "width": 2}, {"from": "Kim Kitsuragi", "to": "Nightwatchman\u0027s Booth", "width": 1}, {"from": "Kim Kitsuragi", "to": "Nix Gottlieb", "width": 1}, {"from": "Kim Kitsuragi", "to": "Ren\u00e9 Arnoux", "width": 9}, {"from": "Kim Kitsuragi", "to": "Set of Tracks", "width": 1}, {"from": "Kim Kitsuragi", "to": "Suzerainty: The Board Game", "width": 1}, {"from": "Kim Kitsuragi", "to": "Sylvie", "width": 2}, {"from": "Kim Kitsuragi", "to": "The Hanged Man", "width": 5}, {"from": "Kim Kitsuragi", "to": "Trash Container", "width": 1}, {"from": "Kim Kitsuragi", "to": "Tutorial Agent", "width": 5}, {"from": "Kim Kitsuragi", "to": "Water Lock Control Panel", "width": 1}, {"from": "Kim Kitsuragi", "to": "You", "width": 48}, {"from": "Mack Torson", "to": "Nix Gottlieb", "width": 2}, {"from": "Mack Torson", "to": "You", "width": 3}, {"from": "Nix Gottlieb", "to": "You", "width": 2}, {"from": "Sylvie", "to": "Tutorial Agent", "width": 1}, {"from": "Sylvie", "to": "You", "width": 2}, {"from": "Tutorial Agent", "to": "Bed", "width": 1}, {"from": "Tutorial Agent", "to": "Cuno", "width": 4}, {"from": "Tutorial Agent", "to": "Cunoesse", "width": 3}, {"from": "Tutorial Agent", "to": "Garte, the Cafeteria Manager", "width": 1}, {"from": "Tutorial Agent", "to": "Lena, the Cryptozoologist\u0027s wife", "width": 1}, {"from": "Tutorial Agent", "to": "The Hanged Man", "width": 2}, {"from": "Tutorial Agent", "to": "Trash Container", "width": 1}, {"from": "Tutorial Agent", "to": "You", "width": 6}, {"from": "You", "to": "Ancient Reptilian Brain", "width": 1}, {"from": "You", "to": "Annette", "width": 1}, {"from": "You", "to": "Bed", "width": 1}, {"from": "You", "to": "Ceiling Fan", "width": 1}, {"from": "You", "to": "Cindy the SKULL", "width": 1}, {"from": "You", "to": "Cuno", "width": 16}, {"from": "You", "to": "Cunoesse", "width": 14}, {"from": "You", "to": "Garte, the Cafeteria Manager", "width": 3}, {"from": "You", "to": "Gaston Martin", "width": 9}, {"from": "You", "to": "Ice Bear Fridge", "width": 2}, {"from": "You", "to": "Joyce Messier", "width": 6}, {"from": "You", "to": "Lena, the Cryptozoologist\u0027s wife", "width": 5}, {"from": "You", "to": "Lilienne, the Net Picker", "width": 3}, {"from": "You", "to": "Limbic System", "width": 1}, {"from": "You", "to": "Man on water lock", "width": 1}, {"from": "You", "to": "Morell, the Cryptozoologist", "width": 2}, {"from": "You", "to": "Nightwatchman\u0027s Booth", "width": 1}, {"from": "You", "to": "Ren\u00e9 Arnoux", "width": 10}, {"from": "You", "to": "Set of Tracks", "width": 1}, {"from": "You", "to": "Suzerainty: The Board Game", "width": 1}, {"from": "You", "to": "The Hanged Man", "width": 5}, {"from": "You", "to": "Trash Container", "width": 1}, {"from": "You", "to": "Water Lock Control Panel", "width": 1}, {"from": "Ancient Reptilian Brain", "to": "Garte, the Cafeteria Manager", "width": 1}, {"from": "Ancient Reptilian Brain", "to": "Lena, the Cryptozoologist\u0027s wife", "width": 1}, {"from": "Ancient Reptilian Brain", "to": "Limbic System", "width": 1}, {"from": "Garte, the Cafeteria Manager", "to": "Cuno", "width": 1}, {"from": "Garte, the Cafeteria Manager", "to": "Lena, the Cryptozoologist\u0027s wife", "width": 3}, {"from": "Garte, the Cafeteria Manager", "to": "Limbic System", "width": 1}, {"from": "Garte, the Cafeteria Manager", "to": "Morell, the Cryptozoologist", "width": 1}, {"from": "Lena, the Cryptozoologist\u0027s wife", "to": "Cuno", "width": 1}, {"from": "Lena, the Cryptozoologist\u0027s wife", "to": "Limbic System", "width": 1}, {"from": "Lena, the Cryptozoologist\u0027s wife", "to": "Morell, the Cryptozoologist", "width": 2}, {"from": "Cindy the SKULL", "to": "Joyce Messier", "width": 1}, {"from": "Cindy the SKULL", "to": "Lilienne, the Net Picker", "width": 1}, {"from": "Joyce Messier", "to": "Lilienne, the Net Picker", "width": 2}, {"from": "Cuno", "to": "Cunoesse", "width": 14}, {"from": "Cuno", "to": "Ice Bear Fridge", "width": 1}, {"from": "Cuno", "to": "The Hanged Man", "width": 4}, {"from": "Cuno", "to": "Trash Container", "width": 1}, {"from": "Cunoesse", "to": "Ice Bear Fridge", "width": 1}, {"from": "Cunoesse", "to": "The Hanged Man", "width": 4}, {"from": "Cunoesse", "to": "Trash Container", "width": 1}, {"from": "Ice Bear Fridge", "to": "The Hanged Man", "width": 2}, {"from": "Gaston Martin", "to": "Ren\u00e9 Arnoux", "width": 9}, {"from": "Man on water lock", "to": "Water Lock Control Panel", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "physics"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

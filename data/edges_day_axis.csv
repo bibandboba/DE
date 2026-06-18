@@ -1,0 +1,172 @@
+source,target,weight
+Alice,Chester McLaine,2
+Alice,Coupris Kineema,2
+Alice,DJ Flacio,1
+Alice,DJ Mesh,1
+Alice,Horrific Necktie,2
+Alice,Jamrock Public Library,2
+Alice,Jean Vicquemare,1
+Alice,Judit Minot,1
+Alice,Jules Pidieu,1
+Alice,Kim Kitsuragi,5
+Alice,Mack Torson,2
+Alice,Nix Gottlieb,1
+Alice,Sylvie,2
+Alice,Tutorial Agent,1
+Alice,You,7
+Ancient Reptilian Brain,"Garte, the Cafeteria Manager",1
+Ancient Reptilian Brain,Horrific Necktie,1
+Ancient Reptilian Brain,Kim Kitsuragi,1
+Ancient Reptilian Brain,"Lena, the Cryptozoologist's wife",1
+Ancient Reptilian Brain,Limbic System,1
+Ancient Reptilian Brain,You,1
+Annette,Kim Kitsuragi,1
+Annette,You,1
+Bed,Tutorial Agent,1
+Bed,You,1
+Ceiling Fan,You,1
+Chester McLaine,Coupris Kineema,1
+Chester McLaine,Horrific Necktie,1
+Chester McLaine,Jean Vicquemare,2
+Chester McLaine,Judit Minot,2
+Chester McLaine,Jules Pidieu,1
+Chester McLaine,Kim Kitsuragi,2
+Chester McLaine,Mack Torson,3
+Chester McLaine,Nix Gottlieb,2
+Chester McLaine,You,3
+Cindy the SKULL,Horrific Necktie,1
+Cindy the SKULL,Joyce Messier,1
+Cindy the SKULL,Kim Kitsuragi,1
+Cindy the SKULL,"Lilienne, the Net Picker",1
+Cindy the SKULL,You,1
+Coupris Kineema,DJ Flacio,1
+Coupris Kineema,DJ Mesh,1
+Coupris Kineema,Horrific Necktie,2
+Coupris Kineema,Jamrock Public Library,1
+Coupris Kineema,Jean Vicquemare,1
+Coupris Kineema,Judit Minot,1
+Coupris Kineema,Jules Pidieu,1
+Coupris Kineema,Kim Kitsuragi,2
+Coupris Kineema,Mack Torson,1
+Coupris Kineema,Sylvie,1
+Coupris Kineema,Tutorial Agent,1
+Coupris Kineema,You,2
+Cuno,Cunoesse,14
+Cuno,"Garte, the Cafeteria Manager",1
+Cuno,Horrific Necktie,3
+Cuno,Ice Bear Fridge,1
+Cuno,Kim Kitsuragi,14
+Cuno,"Lena, the Cryptozoologist's wife",1
+Cuno,The Hanged Man,4
+Cuno,Trash Container,1
+Cuno,Tutorial Agent,4
+Cuno,You,16
+Cunoesse,Horrific Necktie,3
+Cunoesse,Ice Bear Fridge,1
+Cunoesse,Kim Kitsuragi,13
+Cunoesse,The Hanged Man,4
+Cunoesse,Trash Container,1
+Cunoesse,Tutorial Agent,3
+Cunoesse,You,14
+DJ Flacio,DJ Mesh,1
+DJ Flacio,Horrific Necktie,1
+DJ Flacio,Jamrock Public Library,1
+DJ Flacio,Kim Kitsuragi,1
+DJ Flacio,Sylvie,1
+DJ Flacio,Tutorial Agent,1
+DJ Flacio,You,1
+DJ Mesh,Horrific Necktie,1
+DJ Mesh,Jamrock Public Library,1
+DJ Mesh,Kim Kitsuragi,1
+DJ Mesh,Sylvie,1
+DJ Mesh,Tutorial Agent,1
+DJ Mesh,You,1
+"Garte, the Cafeteria Manager",Horrific Necktie,1
+"Garte, the Cafeteria Manager",Kim Kitsuragi,3
+"Garte, the Cafeteria Manager","Lena, the Cryptozoologist's wife",3
+"Garte, the Cafeteria Manager",Limbic System,1
+"Garte, the Cafeteria Manager","Morell, the Cryptozoologist",1
+"Garte, the Cafeteria Manager",Tutorial Agent,1
+"Garte, the Cafeteria Manager",You,3
+Gaston Martin,Kim Kitsuragi,8
+Gaston Martin,René Arnoux,9
+Gaston Martin,You,9
+Horrific Necktie,Jamrock Public Library,1
+Horrific Necktie,Jean Vicquemare,1
+Horrific Necktie,Joyce Messier,2
+Horrific Necktie,Judit Minot,1
+Horrific Necktie,Jules Pidieu,1
+Horrific Necktie,Kim Kitsuragi,9
+Horrific Necktie,"Lena, the Cryptozoologist's wife",1
+Horrific Necktie,"Lilienne, the Net Picker",2
+Horrific Necktie,Limbic System,1
+Horrific Necktie,Mack Torson,1
+Horrific Necktie,Sylvie,1
+Horrific Necktie,The Hanged Man,2
+Horrific Necktie,Tutorial Agent,2
+Horrific Necktie,You,9
+Ice Bear Fridge,Kim Kitsuragi,2
+Ice Bear Fridge,The Hanged Man,2
+Ice Bear Fridge,You,2
+Jamrock Public Library,Kim Kitsuragi,1
+Jamrock Public Library,Sylvie,1
+Jamrock Public Library,Tutorial Agent,1
+Jamrock Public Library,You,2
+Jean Vicquemare,Judit Minot,2
+Jean Vicquemare,Jules Pidieu,1
+Jean Vicquemare,Kim Kitsuragi,2
+Jean Vicquemare,Mack Torson,2
+Jean Vicquemare,Nix Gottlieb,1
+Jean Vicquemare,You,2
+Joyce Messier,Kim Kitsuragi,6
+Joyce Messier,"Lilienne, the Net Picker",2
+Joyce Messier,You,6
+Judit Minot,Jules Pidieu,1
+Judit Minot,Kim Kitsuragi,2
+Judit Minot,Mack Torson,2
+Judit Minot,Nix Gottlieb,1
+Judit Minot,You,2
+Jules Pidieu,Kim Kitsuragi,1
+Jules Pidieu,Mack Torson,1
+Jules Pidieu,You,1
+Kim Kitsuragi,"Lena, the Cryptozoologist's wife",5
+Kim Kitsuragi,"Lilienne, the Net Picker",3
+Kim Kitsuragi,Limbic System,1
+Kim Kitsuragi,Mack Torson,2
+Kim Kitsuragi,Man on water lock,1
+Kim Kitsuragi,"Morell, the Cryptozoologist",2
+Kim Kitsuragi,Nightwatchman's Booth,1
+Kim Kitsuragi,Nix Gottlieb,1
+Kim Kitsuragi,René Arnoux,9
+Kim Kitsuragi,Set of Tracks,1
+Kim Kitsuragi,Suzerainty: The Board Game,1
+Kim Kitsuragi,Sylvie,2
+Kim Kitsuragi,The Hanged Man,5
+Kim Kitsuragi,Trash Container,1
+Kim Kitsuragi,Tutorial Agent,5
+Kim Kitsuragi,Water Lock Control Panel,1
+Kim Kitsuragi,You,48
+"Lena, the Cryptozoologist's wife",Limbic System,1
+"Lena, the Cryptozoologist's wife","Morell, the Cryptozoologist",2
+"Lena, the Cryptozoologist's wife",Tutorial Agent,1
+"Lena, the Cryptozoologist's wife",You,5
+"Lilienne, the Net Picker",You,3
+Limbic System,You,1
+Mack Torson,Nix Gottlieb,2
+Mack Torson,You,3
+Man on water lock,Water Lock Control Panel,1
+Man on water lock,You,1
+"Morell, the Cryptozoologist",You,2
+Nightwatchman's Booth,You,1
+Nix Gottlieb,You,2
+René Arnoux,You,10
+Set of Tracks,You,1
+Suzerainty: The Board Game,You,1
+Sylvie,Tutorial Agent,1
+Sylvie,You,2
+The Hanged Man,Tutorial Agent,2
+The Hanged Man,You,5
+Trash Container,Tutorial Agent,1
+Trash Container,You,1
+Tutorial Agent,You,6
+Water Lock Control Panel,You,1

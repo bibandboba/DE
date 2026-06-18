@@ -1,0 +1,11 @@
+source,target,weight
+Cuno,Insulindian Phasmid,2
+Cuno,Kim Kitsuragi,17
+Cuno,The Deserter,6
+Cuno,You,17
+Insulindian Phasmid,Kim Kitsuragi,2
+Insulindian Phasmid,The Deserter,2
+Insulindian Phasmid,You,2
+Kim Kitsuragi,The Deserter,6
+Kim Kitsuragi,You,17
+The Deserter,You,6

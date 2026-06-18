@@ -1,0 +1,362 @@
+source,target,weight
+Acele,Andre,7
+Acele,Egg Head,6
+Acele,Kim Kitsuragi,11
+Acele,Noid,7
+Acele,"Soona, the Programmer",5
+Acele,You,11
+Alain,Cuno,2
+Alain,De Paule,1
+Alain,Elizabeth,6
+Alain,Eugene,14
+Alain,Fat Angus,9
+Alain,"Garte, the Cafeteria Manager",2
+Alain,Glen,11
+Alain,Kim Kitsuragi,14
+Alain,Kortenaer,1
+Alain,Ruud Hoenkloewen,1
+Alain,Shanky,12
+Alain,The Gardener,2
+Alain,Theo,7
+Alain,Titus Hardie,13
+Alain,You,15
+Alice,Chester McLaine,2
+Alice,DJ Flacio,1
+Alice,DJ Mesh,1
+Alice,Jean Vicquemare,1
+Alice,Judit Minot,1
+Alice,Jules Pidieu,1
+Alice,Kim Kitsuragi,5
+Alice,Mack Torson,2
+Alice,Nix Gottlieb,1
+Alice,Sylvie,2
+Alice,You,7
+Alphonse the Scab,Sad Scab,1
+Alphonse the Scab,Self-Educated Humanitarian,1
+Alphonse the Scab,Strikebreaker,1
+Andre,Egg Head,7
+Andre,Kim Kitsuragi,8
+Andre,Noid,8
+Andre,"Soona, the Programmer",5
+Andre,You,9
+Annette,Kim Kitsuragi,1
+Annette,You,1
+Another Scab,Old Scab,1
+Another Scab,Scab,1
+Another Scab,Unemployed Person,1
+Banger Scab,Former Coal Miner,1
+Banger Scab,Probably a Migrant,1
+Banger Scab,Right-to-Worker,1
+Banger Scab,Scabette,1
+Barry the Butcher,Kim Kitsuragi,1
+Barry the Butcher,Man on water lock,1
+Barry the Butcher,You,1
+Bird's Nest Roy,Kim Kitsuragi,5
+Bird's Nest Roy,You,5
+Boy Strikebreaker,Right-to-Worker,1
+Boy Strikebreaker,Scab,1
+Boy Strikebreaker,Very Hard to Exploit Handicapped Person,1
+Call Me Mañana,Kim Kitsuragi,2
+Call Me Mañana,Scab Leader,1
+Call Me Mañana,You,2
+Chester McLaine,Cindy the SKULL,1
+Chester McLaine,Civilian,1
+Chester McLaine,Jean Vicquemare,3
+Chester McLaine,Joyce Messier,1
+Chester McLaine,Judit Minot,3
+Chester McLaine,Jules Pidieu,1
+Chester McLaine,Kim Kitsuragi,5
+Chester McLaine,Mack Torson,6
+Chester McLaine,Nix Gottlieb,3
+Chester McLaine,Plaisance,1
+Chester McLaine,You,6
+Cindy the SKULL,Joyce Messier,2
+Cindy the SKULL,Kim Kitsuragi,3
+Cindy the SKULL,"Lilienne, the Net Picker",1
+Cindy the SKULL,Mack Torson,1
+Cindy the SKULL,You,3
+Civilian,Kim Kitsuragi,1
+Civilian,Mack Torson,1
+Civilian,Plaisance,1
+Civilian,You,1
+Cleaning Lady,Kim Kitsuragi,2
+Cleaning Lady,You,2
+Cuno,Cunoesse,16
+Cuno,Eugene,2
+Cuno,"Garte, the Cafeteria Manager",1
+Cuno,Jean Vicquemare,3
+Cuno,Judit Minot,3
+Cuno,Kim Kitsuragi,29
+Cuno,"Lena, the Cryptozoologist's wife",1
+Cuno,Smoker on the Balcony,1
+Cuno,The Hanged Man,4
+Cuno,Titus Hardie,1
+Cuno,Trant Heidelstam,3
+Cuno,You,31
+Cuno's Dad,Kim Kitsuragi,1
+Cuno's Dad,You,1
+Cunoesse,Kim Kitsuragi,14
+Cunoesse,The Hanged Man,4
+Cunoesse,You,15
+DJ Flacio,DJ Mesh,1
+DJ Flacio,Kim Kitsuragi,1
+DJ Flacio,Sylvie,1
+DJ Flacio,You,1
+DJ Mesh,Kim Kitsuragi,1
+DJ Mesh,Sylvie,1
+DJ Mesh,You,1
+De Paule,Elizabeth,2
+De Paule,Eugene,2
+De Paule,"Garte, the Cafeteria Manager",2
+De Paule,Glen,1
+De Paule,Kim Kitsuragi,6
+De Paule,Kortenaer,7
+De Paule,Ruud Hoenkloewen,3
+De Paule,Shanky,1
+De Paule,The Gardener,5
+De Paule,Titus Hardie,4
+De Paule,You,7
+Easy Leo,Kim Kitsuragi,1
+Easy Leo,You,1
+Echo Maker,Kim Kitsuragi,1
+Echo Maker,"Steban, the Student Communist",1
+Echo Maker,You,1
+Egg Head,Kim Kitsuragi,6
+Egg Head,Noid,7
+Egg Head,"Soona, the Programmer",5
+Egg Head,You,7
+Elizabeth,Eugene,7
+Elizabeth,Fat Angus,5
+Elizabeth,"Garte, the Cafeteria Manager",4
+Elizabeth,Glen,8
+Elizabeth,Kim Kitsuragi,9
+Elizabeth,Kortenaer,2
+Elizabeth,Ruud Hoenkloewen,1
+Elizabeth,Shanky,7
+Elizabeth,The Gardener,2
+Elizabeth,Theo,4
+Elizabeth,Titus Hardie,9
+Elizabeth,You,9
+Eugene,Fat Angus,9
+Eugene,"Garte, the Cafeteria Manager",3
+Eugene,Glen,11
+Eugene,Kim Kitsuragi,15
+Eugene,Kortenaer,2
+Eugene,Ruud Hoenkloewen,1
+Eugene,Shanky,12
+Eugene,The Gardener,3
+Eugene,Theo,7
+Eugene,Titus Hardie,15
+Eugene,You,16
+Evrart Claire,Kim Kitsuragi,10
+Evrart Claire,You,11
+Fat Angus,"Garte, the Cafeteria Manager",1
+Fat Angus,Glen,9
+Fat Angus,Kim Kitsuragi,8
+Fat Angus,Shanky,9
+Fat Angus,The Gardener,1
+Fat Angus,Theo,6
+Fat Angus,Titus Hardie,9
+Fat Angus,You,9
+Former Coal Miner,Mother of a Scab,1
+Former Coal Miner,Probably a Migrant,2
+Former Coal Miner,Right-to-Worker,1
+Former Coal Miner,Scab,1
+Former Coal Miner,Scabette,2
+Former Coal Miner,Unemployed Person,1
+Frittte clerk,Idiot Doom Spiral,1
+Frittte clerk,Kim Kitsuragi,3
+Frittte clerk,You,6
+Fuck the World,Kim Kitsuragi,1
+Fuck the World,Pissf****t,1
+Fuck the World,You,1
+"Garte, the Cafeteria Manager",Glen,4
+"Garte, the Cafeteria Manager",Kim Kitsuragi,11
+"Garte, the Cafeteria Manager",Kortenaer,3
+"Garte, the Cafeteria Manager","Lena, the Cryptozoologist's wife",3
+"Garte, the Cafeteria Manager","Morell, the Cryptozoologist",1
+"Garte, the Cafeteria Manager",Ruud Hoenkloewen,1
+"Garte, the Cafeteria Manager",Shanky,3
+"Garte, the Cafeteria Manager",Sleeping Dockworker,1
+"Garte, the Cafeteria Manager",The Gardener,2
+"Garte, the Cafeteria Manager",Theo,2
+"Garte, the Cafeteria Manager",Titus Hardie,4
+"Garte, the Cafeteria Manager",You,11
+"Gary, the Cryptofascist",Kim Kitsuragi,4
+"Gary, the Cryptofascist","Lena, the Cryptozoologist's wife",3
+"Gary, the Cryptofascist","Morell, the Cryptozoologist",3
+"Gary, the Cryptofascist",You,4
+Gaston Martin,Kim Kitsuragi,8
+Gaston Martin,René Arnoux,10
+Gaston Martin,You,10
+Glen,Kim Kitsuragi,13
+Glen,Kortenaer,1
+Glen,Ruud Hoenkloewen,1
+Glen,Shanky,13
+Glen,The Gardener,1
+Glen,Theo,7
+Glen,Titus Hardie,13
+Glen,You,14
+Gorący Kubek,Kim Kitsuragi,1
+Gorący Kubek,You,1
+Horse-Faced Woman,Kim Kitsuragi,3
+Horse-Faced Woman,Man with Sunglasses,3
+Horse-Faced Woman,You,3
+Idiot Doom Spiral,Kim Kitsuragi,2
+Idiot Doom Spiral,Rosemary,2
+Idiot Doom Spiral,You,3
+Jean Vicquemare,Judit Minot,6
+Jean Vicquemare,Jules Pidieu,1
+Jean Vicquemare,Kim Kitsuragi,6
+Jean Vicquemare,Mack Torson,3
+Jean Vicquemare,Nix Gottlieb,2
+Jean Vicquemare,Trant Heidelstam,3
+Jean Vicquemare,You,7
+Job Market Loser,Large Scab,1
+Job Market Loser,Scab,1
+Joyce Messier,Kim Kitsuragi,7
+Joyce Messier,"Lilienne, the Net Picker",2
+Joyce Messier,Mack Torson,1
+Joyce Messier,You,7
+Judit Minot,Jules Pidieu,1
+Judit Minot,Kim Kitsuragi,6
+Judit Minot,Mack Torson,3
+Judit Minot,Nix Gottlieb,2
+Judit Minot,Trant Heidelstam,3
+Judit Minot,You,6
+Jules Pidieu,Kim Kitsuragi,1
+Jules Pidieu,Mack Torson,1
+Jules Pidieu,You,1
+Kim Kitsuragi,Klaasje (Miss Oranje Disco Dancer),9
+Kim Kitsuragi,Kortenaer,7
+Kim Kitsuragi,"Lena, the Cryptozoologist's wife",8
+Kim Kitsuragi,Lilienne's Other Twin,1
+Kim Kitsuragi,Lilienne's Twin,1
+Kim Kitsuragi,"Lilienne, the Net Picker",4
+Kim Kitsuragi,Little Lily,1
+Kim Kitsuragi,Mack Torson,5
+Kim Kitsuragi,Man on water lock,2
+Kim Kitsuragi,Man with Sunglasses,3
+Kim Kitsuragi,Measurehead,2
+Kim Kitsuragi,Measurehead's Babe,2
+Kim Kitsuragi,Mikael Heidelstam,3
+Kim Kitsuragi,"Morell, the Cryptozoologist",5
+Kim Kitsuragi,Nix Gottlieb,2
+Kim Kitsuragi,Noid,8
+Kim Kitsuragi,Novelty Dicemaker,1
+Kim Kitsuragi,Paledriver,1
+Kim Kitsuragi,Pissf****t,1
+Kim Kitsuragi,Plaisance,9
+Kim Kitsuragi,Racist lorry driver,2
+Kim Kitsuragi,René Arnoux,9
+Kim Kitsuragi,Rosemary,2
+Kim Kitsuragi,"Ruby, the Instigator",2
+Kim Kitsuragi,Ruud Hoenkloewen,3
+Kim Kitsuragi,Scab Leader,2
+Kim Kitsuragi,Shanky,14
+Kim Kitsuragi,Siileng,2
+Kim Kitsuragi,Sleeping Dockworker,1
+Kim Kitsuragi,Smoker on the Balcony,5
+Kim Kitsuragi,"Soona, the Programmer",8
+Kim Kitsuragi,"Steban, the Student Communist",1
+Kim Kitsuragi,Sunday Friend,2
+Kim Kitsuragi,Sylvie,2
+Kim Kitsuragi,The Gardener,7
+Kim Kitsuragi,The Hanged Man,6
+Kim Kitsuragi,The Pigs,2
+Kim Kitsuragi,Theo,7
+Kim Kitsuragi,Tiago,2
+Kim Kitsuragi,Titus Hardie,17
+Kim Kitsuragi,Tommy Le Homme,1
+Kim Kitsuragi,Trant Heidelstam,6
+Kim Kitsuragi,Washerwoman,1
+Kim Kitsuragi,Working Class Woman,2
+Kim Kitsuragi,You,356
+Klaasje (Miss Oranje Disco Dancer),The Hanged Man,1
+Klaasje (Miss Oranje Disco Dancer),You,11
+Kortenaer,Ruud Hoenkloewen,3
+Kortenaer,Shanky,1
+Kortenaer,The Gardener,5
+Kortenaer,Titus Hardie,4
+Kortenaer,You,8
+Large Scab,Scab,1
+"Lena, the Cryptozoologist's wife","Morell, the Cryptozoologist",5
+"Lena, the Cryptozoologist's wife",You,8
+Lilienne's Other Twin,Lilienne's Twin,1
+Lilienne's Other Twin,You,1
+Lilienne's Twin,You,1
+"Lilienne, the Net Picker",You,4
+Little Lily,You,1
+Mack Torson,Nix Gottlieb,3
+Mack Torson,Plaisance,1
+Mack Torson,You,6
+Man on water lock,You,2
+Man with Sunglasses,You,3
+Measurehead,Measurehead's Babe,2
+Measurehead,Scab Leader,1
+Measurehead,You,2
+Measurehead's Babe,Scab Leader,1
+Measurehead's Babe,You,2
+Mikael Heidelstam,Trant Heidelstam,3
+Mikael Heidelstam,You,3
+"Morell, the Cryptozoologist",You,5
+Mother of a Scab,Probably a Migrant,1
+Mother of a Scab,Scab,1
+Mother of a Scab,Scabette,1
+Mother of a Scab,Unemployed Person,1
+Nix Gottlieb,You,3
+Noid,"Soona, the Programmer",6
+Noid,You,9
+Novelty Dicemaker,You,1
+Old Scab,Scab,1
+Old Scab,Unemployed Person,1
+Paledriver,You,1
+Pissf****t,You,1
+Plaisance,You,13
+Probably a Migrant,Right-to-Worker,1
+Probably a Migrant,Scab,1
+Probably a Migrant,Scabette,2
+Probably a Migrant,Unemployed Person,1
+Racist lorry driver,You,2
+Real Estate Agent,You,1
+René Arnoux,You,11
+Right-to-Worker,Scab,1
+Right-to-Worker,Scabette,1
+Right-to-Worker,Very Hard to Exploit Handicapped Person,1
+Rosemary,You,3
+"Ruby, the Instigator",You,2
+Ruud Hoenkloewen,The Gardener,2
+Ruud Hoenkloewen,Titus Hardie,2
+Ruud Hoenkloewen,You,3
+Sad Scab,Self-Educated Humanitarian,1
+Sad Scab,Strikebreaker,1
+Scab,Scabette,1
+Scab,Unemployed Person,2
+Scab,Very Hard to Exploit Handicapped Person,1
+Scab Leader,You,2
+Scabette,Unemployed Person,1
+Self-Educated Humanitarian,Strikebreaker,1
+Shanky,The Gardener,2
+Shanky,Theo,7
+Shanky,Titus Hardie,14
+Shanky,You,15
+Siileng,You,4
+Sleeping Dockworker,You,1
+Smoker on the Balcony,You,5
+"Soona, the Programmer",You,9
+"Steban, the Student Communist",You,1
+Sunday Friend,You,2
+Sylvie,You,2
+The Gardener,Theo,1
+The Gardener,Titus Hardie,4
+The Gardener,You,7
+The Hanged Man,You,6
+The Pigs,You,2
+Theo,Titus Hardie,7
+Theo,You,7
+Tiago,You,2
+Titus Hardie,You,18
+Tommy Le Homme,You,1
+Trant Heidelstam,You,6
+Washerwoman,You,1
+Working Class Woman,You,2
