@@ -57,5 +57,4 @@ permalink: /
 ## Материалы
 
 - [Ноутбук с полным кодом анализа](disco_elysium_network_analysis.ipynb)
-- [Производные данные](https://bibandboba.github.io/DE/data/)
-- [Лицензия (AGPL-3.0)](LICENSE)
+
