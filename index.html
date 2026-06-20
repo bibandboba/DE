@@ -77,22 +77,6 @@
     font-size:16.5px;
     max-width:480px;
   }
-  .stamp{
-    position:absolute;
-    top:50px; right:28px;
-    border:2px solid var(--stamp);
-    color:var(--stamp);
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:600;
-    font-size:13px;
-    letter-spacing:0.1em;
-    padding:8px 14px;
-    transform:rotate(-9deg);
-    border-radius:3px;
-    opacity:0.85;
-  }
-  @media (max-width:720px){ .stamp{display:none;} }
-
   @keyframes riseIn{
     from{opacity:0; transform:translateY(14px);}
     to{opacity:1; transform:none;}
@@ -141,6 +125,67 @@
   .lede strong{color:var(--ink);font-weight:500;}
 
   section{padding:46px 0;}
+
+  /* ---------- process: what was actually done, sequential pipeline ---------- */
+  .process{border-top:1px solid var(--line);}
+  .process h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin:0 0 26px;
+  }
+  .steps{border-left:2px solid var(--line);margin-left:6px;}
+  .step{
+    position:relative;
+    padding:0 0 28px 28px;
+  }
+  .step:last-child{padding-bottom:0;}
+  .step::before{
+    content:'';
+    position:absolute;
+    left:-6.5px; top:3px;
+    width:11px;height:11px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--step-color, var(--teal));
+  }
+  .step .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-dim);
+    display:block;
+    margin-bottom:4px;
+  }
+  .step p{margin:0;color:var(--ink-dim);font-size:15px;max-width:680px;}
+  .step p strong{color:var(--ink);font-weight:500;}
+
+  /* ---------- conclusions: closing findings, four cards ---------- */
+  .conclusions{border-top:1px solid var(--line);}
+  .conclusions h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+    margin:0 0 26px;
+  }
+  .concl-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .concl-grid .c{
+    background:var(--bg);
+    padding:22px 24px;
+    border-top:3px solid var(--c-color, var(--teal));
+  }
+  .concl-grid .c p{margin:0;font-size:15px;color:var(--ink-dim);}
+  .concl-grid .c p strong{color:var(--ink);font-weight:600;}
+  @media (max-width:680px){ .concl-grid{grid-template-columns:1fr;} }
 
   /* ---------- exhibits: split family ---------- */
   .exhibit{
@@ -291,8 +336,7 @@
       <span>Ревашоль · Мартинез</span>
     </div>
     <h1 class="hero-in d2">Сетевой анализ<br>персонажей Disco Elysium</h1>
-    <p class="subtitle hero-in d3">105 персонажей, 368 связей. Кто держит сюжет, если верить диалоговому дампу игры.</p>
-    <div class="stamp hero-in d3">верифицировано</div>
+    <p class="subtitle hero-in d3">105 персонажей, 368 связей в графе совместных появлений. Анализ построен на диалоговом дампе игры.</p>
   </div>
 </header>
 
@@ -304,7 +348,31 @@
       <div class="cell"><span class="n mono">63/590</span><span class="l">сцен с днём</span></div>
       <div class="cell"><span class="n mono">2/5</span><span class="l">новых лиц в финале</span></div>
     </div>
-    <p class="lede reveal">Вершина графа: персонаж. Ребро: общая сцена. Источник данных: датамайнинговый дамп диалоговой базы игры. Вопрос разбора: как позиция в сюжете (начало, середина, финал) определяет позицию в сети.</p>
+    <p class="lede reveal">Вершина графа: персонаж. Ребро: общая сцена общих появлений в диалогах.</p>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <h2 class="reveal">Что сделано</h2>
+    <div class="steps reveal">
+      <div class="step" style="--step-color:var(--teal)">
+        <span class="num mono">01</span>
+        <p>Из диалогового дампа извлечены пары персонажей, появляющихся в одной сцене. Построен граф: <strong>105 узлов, 368 ребёр</strong>.</p>
+      </div>
+      <div class="step" style="--step-color:var(--purple)">
+        <span class="num mono">02</span>
+        <p>Посчитаны degree centrality и betweenness centrality. Найдена и исправлена ошибка: частота совместных появлений передавалась в <code>betweenness_centrality</code> как <code>weight</code>, а networkx читает этот параметр как расстояние, а не как силу связи.</p>
+      </div>
+      <div class="step" style="--step-color:var(--mustard)">
+        <span class="num mono">03</span>
+        <p>Сцены размечены игровым днём там, где это было возможно (<strong>63 из 590</strong>). На этой выборке построена сеть по оси времени: цвет узла обозначает день первого появления персонажа.</p>
+      </div>
+      <div class="step" style="--step-color:var(--pink)">
+        <span class="num mono">04</span>
+        <p>Выделена финальная сцена в Сифорте и сопоставлена с полным графом: какие из пяти персонажей сцены новые для сети, а какие уже встречались.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -313,7 +381,7 @@
   <div class="exhibit reveal">
     <div class="ex-text">
       <h3><span class="swatch" style="background:var(--stamp)" title="Протагонисты"></span>Гарри и Ким, двойное ядро сети</h3>
-      <p>Degree и betweenness centrality сходятся на двух протагонистах. По пути обнаружена и исправлена методологическая ошибка. Частоту совместных появлений нельзя передавать в <code>betweenness_centrality</code> как <code>weight</code>: networkx читает этот параметр как расстояние, а не как силу связи.</p>
+      <p>Оба протагониста одновременно лидируют по degree и по betweenness centrality. На графе это видно сразу: размер узла (degree) и положение в центре переплетений (betweenness) совпадают у одних и тех же двух персонажей.</p>
     </div>
     <div class="ex-img">
       <img src="viz/full_network_static.png" alt="Полная сеть персонажей Disco Elysium, размер узла соответствует degree centrality">
@@ -341,7 +409,7 @@
   <div class="exhibit flip reveal">
     <div class="ex-text">
       <h3><span class="swatch" style="background:var(--mustard)" title="Ось времени"></span>Где появляется главный состав</h3>
-      <p>Из 63 сцен с надёжно верифицированным днём (10.7% от 590 сцен игры) видно: основной состав вводится уже на 1-2 день, и плотность новых связей затухает к 4-5 дню. Цвет узла обозначает день первого появления персонажа.</p>
+      <p>Основной состав вводится уже на 1-2 день. Дальше плотность новых связей быстро затухает: к 4-5 дню сеть в основном достраивается, а не пересобирается заново.</p>
     </div>
     <div class="ex-img">
       <img src="viz/day_axis_network_static.png" alt="Сеть персонажей по оси игровых дней, цвет узла обозначает день первого появления">
@@ -365,6 +433,26 @@
   </div>
 
 </div>
+
+<section class="conclusions">
+  <div class="wrap">
+    <h2 class="reveal">Выводы</h2>
+    <div class="concl-grid reveal">
+      <div class="c" style="--c-color:var(--stamp)">
+        <p><strong>Гарри и Ким лидируют сразу по двум показателям центральности.</strong> Это структурное свойство графа, а не художественный приём: оба протагониста объективно держат сеть.</p>
+      </div>
+      <div class="c" style="--c-color:var(--purple)">
+        <p><strong>Топ по degree и топ по betweenness не совпадают.</strong> Массовость связей и позиция посредника между группами персонажей, это разные роли в сети.</p>
+      </div>
+      <div class="c" style="--c-color:var(--mustard)">
+        <p><strong>Состав в основном собирается за первые 1-2 игровых дня.</strong> Дальше сеть наращивает плотность связей, а не меняет действующих лиц.</p>
+      </div>
+      <div class="c" style="--c-color:var(--pink)">
+        <p><strong>Финал у Сифорта вводит минимум новых лиц: 2 из 5.</strong> Оба напрямую связаны с разгадкой тайны, новые узлы появляются не случайно.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="sources reveal">
   <div class="wrap">
