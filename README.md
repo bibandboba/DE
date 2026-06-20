@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Сетевой анализ персонажей Disco Elysium
+permalink: /
 ---
 
 # Сетевой анализ персонажей Disco Elysium
