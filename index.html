@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дело №2026 — Сетевой анализ персонажей Disco Elysium</title>
+<title>Дело №2026: Сетевой анализ персонажей Disco Elysium</title>
+<meta name="description" content="Граф совместных появлений 105 персонажей Disco Elysium: кто держит сюжет, по данным диалоговой базы игры.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,500;0,700;1,500;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#1b1d1c;
@@ -13,11 +14,11 @@
     --line:#3a3d36;
     --ink:#e9e4d6;
     --ink-dim:#92907f;
-    --teal:#4fa6a0;     /* INT */
-    --purple:#8c6fb0;   /* PSY */
-    --mustard:#c9b23a;  /* MOT */
-    --pink:#d77a9e;     /* FYS */
-    --stamp:#a23b32;
+    --teal:#4fa6a0;     /* Intellect */
+    --purple:#8c6fb0;   /* Psyche */
+    --mustard:#c9b23a;  /* Motorics */
+    --pink:#d77a9e;     /* Physique */
+    --stamp:#a23b32;    /* протагонисты / акцент */
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -30,15 +31,24 @@
     font-size:16.5px;
     line-height:1.6;
   }
-  .wrap{max-width:980px;margin:0 auto;padding:0 28px;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
   .mono{font-family:'IBM Plex Mono', monospace;}
   a{color:var(--ink);}
+
+  /* reveal-on-scroll, motivated: sections surface in the order the investigation proceeds */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);}
+  .reveal.is-visible{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1!important;transform:none!important;transition:none!important;}
+    .hero-in{animation:none!important;opacity:1!important;transform:none!important;}
+  }
 
   /* ---------- header / case cover ---------- */
   header{
     border-bottom:2px solid var(--line);
     padding:54px 0 40px;
     position:relative;
+    overflow:hidden;
   }
   .case-no{
     font-family:'IBM Plex Mono', monospace;
@@ -57,14 +67,15 @@
     font-style:italic;
     font-weight:700;
     font-size:48px;
-    line-height:1.08;
+    line-height:1.18;
+    padding-bottom:6px;
     margin:0 0 14px;
-    max-width:760px;
+    max-width:720px;
   }
   .subtitle{
     color:var(--ink-dim);
     font-size:16.5px;
-    max-width:560px;
+    max-width:480px;
   }
   .stamp{
     position:absolute;
@@ -81,6 +92,15 @@
     opacity:0.85;
   }
   @media (max-width:720px){ .stamp{display:none;} }
+
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:none;}
+  }
+  .hero-in{animation:riseIn .8s cubic-bezier(.16,1,.3,1) both;}
+  .hero-in.d1{animation-delay:.05s;}
+  .hero-in.d2{animation-delay:.18s;}
+  .hero-in.d3{animation-delay:.3s;}
 
   /* ---------- ledger / stats ---------- */
   .ledger{
@@ -111,45 +131,43 @@
     display:block;
   }
 
+  .lede-section{padding:46px 0 10px;}
   .lede{
     color:var(--ink-dim);
-    font-size:15.5px;
-    max-width:680px;
-    margin:26px 0;
+    font-size:16px;
+    max-width:620px;
+    margin:0 0 0 auto;
   }
+  .lede strong{color:var(--ink);font-weight:500;}
 
-  section{padding:48px 0;}
+  section{padding:46px 0;}
 
-  /* ---------- exhibits ---------- */
+  /* ---------- exhibits: split family ---------- */
   .exhibit{
     border-top:1px solid var(--line);
     padding:44px 0;
     display:grid;
-    grid-template-columns:1fr 1.3fr;
-    gap:34px;
+    grid-template-columns:0.95fr 1.4fr;
+    gap:36px;
     align-items:start;
   }
-  .exhibit:nth-child(even){grid-template-columns:1.3fr 1fr;}
-  .exhibit:nth-child(even) .ex-text{order:2;}
-  .tag{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--ink-dim);
-    margin-bottom:12px;
+  .exhibit.flip{grid-template-columns:1.4fr 0.95fr;}
+  .exhibit.flip .ex-text{order:2;}
+  .swatch{
+    width:10px;height:10px;
+    display:inline-block;
+    margin-right:9px;
+    border-radius:2px;
+    position:relative;
+    top:-1px;
   }
-  .tag .chip{width:9px;height:9px;border-radius:50%;display:inline-block;}
   .ex-text h3{
-    font-family:'Bodoni Moda', Georgia, serif;
-    font-style:italic;
+    font-family:'IBM Plex Sans', Arial, sans-serif;
     font-weight:700;
-    font-size:25px;
+    font-size:24px;
     margin:0 0 12px;
-    line-height:1.25;
+    line-height:1.3;
+    letter-spacing:-0.01em;
   }
   .ex-text p{color:var(--ink-dim);font-size:15px;margin:0;}
   .ex-text code{
@@ -160,7 +178,13 @@
     font-size:13px;
     color:var(--ink);
   }
-  .ex-img{border:1px solid var(--line);background:var(--panel);}
+  .ex-img{
+    border:1px solid var(--line);
+    background:var(--panel);
+    position:relative;
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1);
+  }
+  .ex-img:hover{transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(0,0,0,0.55);}
   .ex-img img{width:100%;display:block;}
   .ex-caption{
     font-family:'IBM Plex Mono', monospace;
@@ -174,15 +198,54 @@
   .ex-caption a{color:var(--teal);text-decoration:none;}
   .ex-caption a:hover{color:var(--ink);}
 
+  /* exhibit 04: split + inset stat callout, distinct compositional treatment */
+  .ex-callout{
+    position:absolute;
+    left:14px; bottom:14px;
+    background:var(--panel);
+    border:1px solid var(--pink);
+    padding:10px 16px;
+    border-radius:3px;
+  }
+  .ex-callout .cn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:26px;
+    font-weight:600;
+    color:var(--ink);
+    display:block;
+    line-height:1;
+  }
+  .ex-callout .cl{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--ink-dim);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    display:block;
+    margin-top:4px;
+    max-width:140px;
+  }
+
+  /* exhibit 02: full-width stacked family, breaks the split rhythm */
+  .exhibit-full{
+    border-top:1px solid var(--line);
+    padding:44px 0;
+  }
+  .exhibit-full .ex-text{max-width:640px;margin:0 0 28px;}
+  .exhibit-full .ex-text h3{font-size:24px;}
+  .exhibit-full .ex-img{margin:0;}
+
   @media (max-width:760px){
-    .exhibit, .exhibit:nth-child(even){grid-template-columns:1fr;}
-    .exhibit:nth-child(even) .ex-text{order:0;}
-    h1{font-size:34px;}
+    .exhibit, .exhibit.flip{grid-template-columns:1fr;}
+    .exhibit.flip .ex-text{order:0;}
+    .ex-callout{position:static;margin-top:10px;display:inline-block;}
+    h1{font-size:32px;}
+    .lede{margin:0;}
     .ledger{grid-template-columns:repeat(2,1fr);}
     .ledger .cell:nth-child(2){border-right:none;}
   }
 
-  /* ---------- sources ---------- */
+  /* ---------- sources: centered link family ---------- */
   .sources{
     border-top:1px solid var(--line);
     padding-top:40px;
@@ -205,8 +268,10 @@
     text-decoration:none;
     border-bottom:1px solid var(--line);
     padding-bottom:3px;
+    transition:border-color .2s, color .2s;
   }
   .src-links a:hover{border-color:var(--teal);color:var(--teal);}
+  .src-links a:active{transform:translateY(1px);}
 
   footer{
     text-align:center;
@@ -221,84 +286,90 @@
 
 <header>
   <div class="wrap">
-    <div class="case-no">
+    <div class="case-no hero-in d1">
       <span>Дело № RVCH-1037</span>
       <span>Ревашоль · Мартинез</span>
     </div>
-    <h1>Сетевой анализ<br>персонажей Disco Elysium</h1>
-    <p class="subtitle">105 персонажей, 368 связей. Кто на самом деле держит сюжет — по диалоговому дампу игры.</p>
-    <div class="stamp">верифицировано</div>
+    <h1 class="hero-in d2">Сетевой анализ<br>персонажей Disco Elysium</h1>
+    <p class="subtitle hero-in d3">105 персонажей, 368 связей. Кто держит сюжет, если верить диалоговому дампу игры.</p>
+    <div class="stamp hero-in d3">верифицировано</div>
   </div>
 </header>
 
-<section>
+<section class="lede-section">
   <div class="wrap">
-    <div class="ledger">
+    <div class="ledger reveal">
       <div class="cell"><span class="n mono">105</span><span class="l">персонажей</span></div>
       <div class="cell"><span class="n mono">368</span><span class="l">связей</span></div>
       <div class="cell"><span class="n mono">63/590</span><span class="l">сцен с днём</span></div>
       <div class="cell"><span class="n mono">2/5</span><span class="l">новых лиц в финале</span></div>
     </div>
-    <p class="lede">Граф совместных появлений: вершина — персонаж, ребро — общая сцена. Источник — датамайнинговый дамп диалоговой базы игры. Вопрос: как позиция в сюжете (начало / середина / финал) определяет позицию в сети.</p>
+    <p class="lede reveal">Вершина графа: персонаж. Ребро: общая сцена. Источник данных: датамайнинговый дамп диалоговой базы игры. Вопрос разбора: как позиция в сюжете (начало, середина, финал) определяет позицию в сети.</p>
   </div>
 </section>
 
 <div class="wrap">
 
-  <div class="exhibit">
+  <div class="exhibit reveal">
     <div class="ex-text">
-      <div class="tag"><span class="chip" style="background:var(--stamp)"></span>Карточка 01 · структура</div>
-      <h3>Гарри и Ким — двойное ядро сети</h3>
-      <p>Degree и betweenness centrality сходятся на двух протагонистах. По пути найдена и исправлена методологическая ошибка: частоту совместных появлений нельзя передавать в <code>betweenness_centrality</code> как <code>weight</code> — networkx читает его как расстояние, а не как силу связи.</p>
+      <h3><span class="swatch" style="background:var(--stamp)" title="Протагонисты"></span>Гарри и Ким, двойное ядро сети</h3>
+      <p>Degree и betweenness centrality сходятся на двух протагонистах. По пути обнаружена и исправлена методологическая ошибка. Частоту совместных появлений нельзя передавать в <code>betweenness_centrality</code> как <code>weight</code>: networkx читает этот параметр как расстояние, а не как силу связи.</p>
     </div>
     <div class="ex-img">
-      <img src="viz/full_network_static.png" alt="Полная сеть персонажей">
+      <img src="viz/full_network_static.png" alt="Полная сеть персонажей Disco Elysium, размер узла соответствует degree centrality">
       <div class="ex-caption"><span>размер узла = degree</span><a href="viz/full_network.html">интерактив →</a></div>
-    </div>
-  </div>
-
-  <div class="exhibit">
-    <div class="ex-text">
-      <div class="tag"><span class="chip" style="background:var(--purple)"></span>Карточка 02 · центральность</div>
-      <h3>Кто держит сеть на плечах</h3>
-      <p>Топ-10 по degree centrality и по betweenness centrality — не одни и те же лица. Высокий degree — это массовость связей, высокий betweenness — позиция посредника между группами персонажей.</p>
-    </div>
-    <div class="ex-img">
-      <img src="viz/centrality_bars.png" alt="Топ персонажей по центральности">
-      <div class="ex-caption"><span>data/metrics_full_strict.csv</span><span></span></div>
-    </div>
-  </div>
-
-  <div class="exhibit">
-    <div class="ex-text">
-      <div class="tag"><span class="chip" style="background:var(--mustard)"></span>Карточка 03 · ось времени</div>
-      <h3>Резкий вход состава на 1–2 день</h3>
-      <p>Из 63 сцен с надёжно верифицированным днём (10.7% от 590 сцен игры) видно: основной состав вводится уже на 1–2 день, дальше плотность новых связей затухает к 4–5 дню. Цвет узла = день первого появления.</p>
-    </div>
-    <div class="ex-img">
-      <img src="viz/day_axis_network_static.png" alt="Сеть по оси дней">
-      <div class="ex-caption"><span>data/edges_day_axis.csv</span><a href="viz/day_axis_network.html">интерактив →</a></div>
-    </div>
-  </div>
-
-  <div class="exhibit">
-    <div class="ex-text">
-      <div class="tag"><span class="chip" style="background:var(--pink)"></span>Карточка 04 · финал</div>
-      <h3>Сифорт вводит новых лиц специально под разгадку</h3>
-      <p>В финальной сцене 2 из 5 персонажей — Insulindian Phasmid и The Deserter — не встречаются больше нигде в игре, и оба напрямую связаны с раскрытием тайны.</p>
-    </div>
-    <div class="ex-img">
-      <img src="viz/seafort_network_static.png" alt="Сеть финальной сцены Сифорт">
-      <div class="ex-caption"><span>красным — новый персонаж</span><a href="viz/seafort_network.html">интерактив →</a></div>
     </div>
   </div>
 
 </div>
 
-<section class="sources">
+<div class="exhibit-full">
+  <div class="wrap">
+    <div class="ex-text reveal">
+      <h3><span class="swatch" style="background:var(--purple)" title="Betweenness"></span>Кто держит сеть на плечах</h3>
+      <p>Топ-10 по degree centrality и топ-10 по betweenness centrality не совпадают полностью. Высокий degree означает массовость связей. Высокий betweenness означает позицию посредника между группами персонажей.</p>
+    </div>
+    <div class="ex-img reveal">
+      <img src="viz/centrality_bars.png" alt="Сравнение топ-10 персонажей по degree centrality и betweenness centrality">
+      <div class="ex-caption"><span>data/metrics_full_strict.csv</span><span></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="exhibit flip reveal">
+    <div class="ex-text">
+      <h3><span class="swatch" style="background:var(--mustard)" title="Ось времени"></span>Где появляется главный состав</h3>
+      <p>Из 63 сцен с надёжно верифицированным днём (10.7% от 590 сцен игры) видно: основной состав вводится уже на 1-2 день, и плотность новых связей затухает к 4-5 дню. Цвет узла обозначает день первого появления персонажа.</p>
+    </div>
+    <div class="ex-img">
+      <img src="viz/day_axis_network_static.png" alt="Сеть персонажей по оси игровых дней, цвет узла обозначает день первого появления">
+      <div class="ex-caption"><span>data/edges_day_axis.csv</span><a href="viz/day_axis_network.html">интерактив →</a></div>
+    </div>
+  </div>
+
+  <div class="exhibit reveal">
+    <div class="ex-text">
+      <h3><span class="swatch" style="background:var(--pink)" title="Финал"></span>Новые лица финала и разгадка тайны</h3>
+      <p>В финальной сцене у Сифорта два персонажа из пяти не встречаются больше нигде в игре: Insulindian Phasmid и The Deserter. Оба напрямую связаны с раскрытием тайны.</p>
+    </div>
+    <div class="ex-img">
+      <img src="viz/seafort_network_static.png" alt="Сеть финальной сцены в Сифорте, новые персонажи выделены красным">
+      <div class="ex-callout">
+        <span class="cn mono">2/5</span>
+        <span class="cl">встречаются только в этой сцене</span>
+      </div>
+      <div class="ex-caption"><span>красный цвет: новый персонаж</span><a href="viz/seafort_network.html">интерактив →</a></div>
+    </div>
+  </div>
+
+</div>
+
+<section class="sources reveal">
   <div class="wrap">
     <h2>Источники</h2>
-    <p>Данные — датамайнинговый дамп диалоговой базы <a href="https://github.com/msyavuz/disco-api" style="color:var(--teal)">disco-api</a> (SQLite, ≈40 МБ). Весь разбор, включая методологическую ошибку и её исправление, — в ноутбуке.</p>
+    <p>Данные: датамайнинговый дамп диалоговой базы <a href="https://github.com/msyavuz/disco-api" style="color:var(--teal)">disco-api</a> (SQLite, ≈40 МБ). Весь разбор, включая методологическую ошибку и её исправление, в ноутбуке.</p>
     <div class="src-links">
       <a href="https://github.com/bibandboba/DE">репозиторий</a>
       <a href="disco_elysium_network_analysis.ipynb">ноутбук</a>
@@ -310,6 +381,26 @@
 <footer>
   Финальный проект курса «Цифровые технологии в профессиональной деятельности» · ФГН НИУ ВШЭ · 2026
 </footer>
+
+<script>
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
+      els.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    els.forEach(function(el){ io.observe(el); });
+  })();
+</script>
 
 </body>
 </html>
